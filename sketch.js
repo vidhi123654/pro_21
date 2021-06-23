@@ -1,10 +1,11 @@
 var canvas;
 var block1,block2,block3,block4;
-var ball, edges;
+var ball, edges,sound;
 var music;
 
 function preload(){
     // load sound here
+sound=loadSound("music.mp3")
 }
 
 
@@ -44,34 +45,34 @@ function draw() {
     
     //write code to bounce off ball from the block1 
     if(ball.isTouching(block1)){
-        ball.bounceOff(block1)
+       // ball.bounceOff(block1)
         ball.shapeColor = "blue";
-        music.play();
+        sound.play();
     }
 
 
 
-    // //if(block2.isTouching(ball)){
-    //     ball.shapeColor = "orange";
-    //     //write code to set velocityX and velocityY of ball as 0
-    //     ball.velocityX=0
-    //     ball.velocityY=0
-    //      //write code to stop music
-    //      music.stop();
-    // }
+    if(block2.isTouching(ball)){
+        ball.shapeColor = "orange";
+        //write code to set velocityX and velocityY of ball as 0
+        ball.velocityX=0
+        ball.velocityY=0
+         //write code to stop music
+         sound.stop();
+    }
 
-    // //write code to bounce off ball from the block3
-    // if(block3.isTouching(ball)) {
-    //  ball.bounceOff(block3)
-    //     ball.shapeColor = "red";
-    //     music.play();
-    // }
+    //write code to bounce off ball from the block3
+    if(block3.isTouching(ball)) {
+     ball.bounceOff(block3)
+        ball.shapeColor = "red";
+        sound.stop();
+    }
 
 
-    // //write code to bounce off ball from the block4
-    // if(block4.isTouching(ball) && ball.bounceOff(block4)){
-    //     ball.shapeColor = "green";
-    //     music.play();
-    // }
+    //write code to bounce off ball from the block4
+    if(block4.isTouching(ball) && ball.bounceOff(block4)){
+        ball.shapeColor = "green";
+        sound.stop();
+    }
     drawSprites();
 }
